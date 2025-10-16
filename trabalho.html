@@ -1,0 +1,583 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Galeria Multimédia Premium - Alfredo Manuel Buque</title>
+
+  <!-- Font Awesome para ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    :root {
+      --bg-light: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --bg-dark: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      --text-light: #ffffff;
+      --text-dark: #f0f0f0;
+      --card-bg-light: rgba(255, 255, 255, 0.95);
+      --card-bg-dark: rgba(30, 30, 46, 0.95);
+      --accent: #667eea;
+      --accent-dark: #a78bfa;
+      --shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, Arial, sans-serif;
+      background: var(--bg-light);
+      color: var(--text-light);
+      min-height: 100vh;
+      padding: 2rem 1rem;
+      transition: all 0.4s ease;
+    }
+
+    body.dark-mode {
+      background: var(--bg-dark);
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 4rem;
+      padding: 3rem;
+      background: var(--card-bg-light);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      animation: fadeInDown 0.8s ease-out;
+    }
+
+    body.dark-mode header {
+      background: var(--card-bg-dark);
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    body.dark-mode h1 {
+      background: linear-gradient(135deg, #a78bfa 0%, #ec4899 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: #555;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    body.dark-mode .subtitle {
+      color: #ccc;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      margin: 3rem 0 2rem;
+      padding-left: 1.5rem;
+      border-left: 5px solid var(--accent);
+      color: var(--text-light);
+    }
+
+    body.dark-mode .section-title {
+      color: var(--accent-dark);
+    }
+
+    .media-block {
+      background: var(--card-bg-light);
+      padding: 3rem;
+      margin-bottom: 2.5rem;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+
+    body.dark-mode .media-block {
+      background: var(--card-bg-dark);
+      color: var(--text-dark);
+    }
+
+    .media-block:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Perfil com imagem MAIOR */
+    .profile {
+      text-align: center;
+    }
+
+    .profile-image-wrapper {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 2rem;
+    }
+
+    .profile img {
+      width: 350px;
+      height: 350px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 6px solid var(--accent);
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .profile img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+    }
+
+    body.dark-mode .profile img {
+      border-color: var(--accent-dark);
+    }
+
+    .profile h3 {
+      font-size: 1.8rem;
+      color: var(--accent);
+      margin: 1rem 0;
+    }
+
+    body.dark-mode .profile h3 {
+      color: var(--accent-dark);
+    }
+
+    .profile p {
+      font-size: 1.1rem;
+      color: #555;
+      line-height: 1.8;
+    }
+
+    body.dark-mode .profile p {
+      color: #ccc;
+    }
+
+    /* Galeria de Imagens */
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+
+    .image-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .image-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+    }
+
+    .image-card img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .image-card:hover img {
+      transform: scale(1.1);
+    }
+
+    /* Música com controles e download */
+    .music-player {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 2.5rem;
+      border-radius: 15px;
+      margin-top: 1.5rem;
+    }
+
+    body.dark-mode .music-player {
+      background: linear-gradient(135deg, #a78bfa 0%, #ec4899 100%);
+    }
+
+    .music-item {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .music-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .music-item h4 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: white;
+    }
+
+    audio {
+      width: 100%;
+      margin-bottom: 1rem;
+      border-radius: 10px;
+      filter: brightness(0.95);
+    }
+
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: white;
+      color: var(--accent);
+      padding: 0.8rem 2rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .download-btn:hover {
+      background: var(--accent);
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Vídeos */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+      gap: 2.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .video-wrapper:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .video-wrapper iframe,
+    .video-wrapper video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 15px;
+    }
+
+    .video-local {
+      width: 100%;
+      max-width: 900px;
+      margin: 1.5rem auto;
+      display: block;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .video-caption {
+      margin-top: 1rem;
+      font-size: 1rem;
+      color: #666;
+      text-align: center;
+    }
+
+    body.dark-mode .video-caption {
+      color: #aaa;
+    }
+
+    /* Botão de modo escuro */
+    .toggle-dark-mode {
+      position: fixed;
+      top: 30px;
+      right: 30px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 1rem 1.5rem;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      z-index: 1000;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .toggle-dark-mode:hover {
+      background: #764ba2;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+    }
+
+    body.dark-mode .toggle-dark-mode {
+      background: var(--accent-dark);
+    }
+
+    /* Animações */
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsivo */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .profile img {
+        width: 250px;
+        height: 250px;
+      }
+
+      .image-gallery,
+      .video-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .toggle-dark-mode {
+        top: 15px;
+        right: 15px;
+        padding: 0.8rem 1.2rem;
+        font-size: 0.9rem;
+      }
+
+      .media-block {
+        padding: 2rem;
+      }
+    }
+
+    i {
+      color: inherit;
+      margin-right: 0.5rem;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Botão para alternar tema -->
+  <button class="toggle-dark-mode" onclick="toggleDarkMode()">
+    <i class="fas fa-moon"></i> <span>Tema Escuro</span>
+  </button>
+
+  <div class="container">
+    <header>
+      <h1><i class="fas fa-photo-video"></i> Galeria Multimédia Premium</h1>
+      <p class="subtitle">Portfólio completo de Alfredo Manuel Buque com imagens, vídeos e músicas em alta qualidade. Explore conteúdos multimídia com design moderno e funcional.</p>
+    </header>
+
+    <!-- Perfil com imagem MAIOR -->
+    <section class="media-block" aria-label="Perfil">
+      <div class="profile">
+        <div class="profile-image-wrapper">
+          <img src="CCCC.jpeg" alt="Foto de perfil de Alfredo Manuel Buque (Fred Buque)" />
+        </div>
+        <h3><i class="fas fa-user-circle"></i> Alfredo Manuel Buque</h3>
+        <p>Criador de conteúdo multimídia e desenvolvedor web. Esta imagem representa o autor do projeto e é utilizada como foto de perfil oficial em todos os canais digitais e plataformas profissionais.</p>
+      </div>
+    </section>
+
+    <!-- Galeria de Imagens Adicionais -->
+    <h2 class="section-title"><i class="fas fa-images"></i> Galeria de Imagens</h2>
+    <section class="media-block">
+      <div class="image-gallery">
+        <div class="image-card">
+          <img src="CCCC.jpeg" alt="Imagem de perfil principal" />
+        </div>
+        <div class="image-card">
+          <img src="WhatsApp Image 2025-10-02 at 08.30.57.jpeg" alt="Tecnologia e código" />
+        </div>
+        <div class="image-card">
+          <img src="WhatsApp Image 2025-10-04 at 14.40.29.jpeg" alt="Workspace criativo" />
+        </div>
+        <div class="image-card">
+          <img src="WhatsApp Image 2025-10-02 at 08.29.43.jpeg" alt="Produção de áudio" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Músicas com controles e download -->
+    <h2 class="section-title"><i class="fas fa-music"></i> Biblioteca Musical</h2>
+    <section class="media-block">
+      <div class="music-player">
+        <div class="music-item">
+          <h4><i class="fas fa-headphones"></i> Música Principal - Alee feat. Filipe Ret</h4>
+          <audio controls preload="metadata">
+            <source src="Alee - 24 - TUDO DE NOVO feat. Filipe Ret prod. QualyWav1 - VIDEOCLIPE OFICIAL-1Qus1HEB_fA.mp3" type="audio/mpeg" />
+            <p>O seu navegador não suporta o elemento de áudio.</p>
+          </audio>
+          <a href="WhatsApp Audio 2025-10-02 at 08.28.44.mp3" download class="download-btn">
+            <i class="fas fa-download"></i> Download MP3
+          </a>
+          <p style="margin-top: 1rem; font-size: 0.95rem; color: rgba(255,255,255,0.9);">
+            Trilha sonora oficial utilizada nos vídeos do canal. Música de alta qualidade disponível para download.
+          </p>
+        </div>
+
+        <div class="music-item">
+          <h4><i class="fas fa-music"></i> Faixa Demo - Exemplo 2</h4>
+          <audio controls preload="metadata">
+            <source src="WhatsApp Audio 2025-10-02 at 08.28.44.mp3" type="audio/mpeg" />
+            <p>O seu navegador não suporta o elemento de áudio.</p>
+          </audio>
+          <a href="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" download class="download-btn">
+            <i class="fas fa-download"></i> Download MP3
+          </a>
+          <p style="margin-top: 1rem; font-size: 0.95rem; color: rgba(255,255,255,0.9);">
+            Exemplo de música demo disponível para download e uso em projetos.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vídeos com iframe (YouTube) -->
+    <h2 class="section-title"><i class="fas fa-youtube"></i> Vídeos do YouTube</h2>
+    <section class="media-block">
+      <div class="video-grid">
+        <div>
+          <div class="video-wrapper">
+            <iframe 
+              src="https://www.youtube.com/embed/3wf7Gicap0E" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen>
+            </iframe>
+          </div>
+          <p class="video-caption">Exemplo de vídeo incorporado do YouTube</p>
+        </div>
+
+        <div>
+          <div class="video-wrapper">
+            <iframe 
+              src="https://www.youtube.com/embed/nHxvtVEAprg" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen>
+            </iframe>
+          </div>
+          <p class="video-caption">PSY - GANGNAM STYLE (강남스타일) M/V</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vídeo Local (src) MAIOR -->
+    <h2 class="section-title"><i class="fas fa-video"></i> Vídeo Local em Alta Resolução</h2>
+    <section class="media-block">
+      <video class="video-local" controls poster="assets/video-poster.jpg" preload="metadata">
+        <source src="WhatsApp Video 2025-10-16 at 03.14.38.mp4" type="video/mp4" />
+        <p>O seu navegador não suporta o elemento de vídeo.</p>
+      </video>
+      <p class="video-caption">
+        Vídeo de demonstração em alta qualidade mostrando como incorporar conteúdos multimédia numa página HTML5. Controles completos disponíveis.
+      </p>
+    </section>
+
+    <!-- Vídeos Locais em Grid -->
+    <h2 class="section-title"><i class="fas fa-film"></i> Mais Vídeos Locais</h2>
+    <section class="media-block">
+      <div class="video-grid">
+        <div>
+          <div class="video-wrapper">
+            <video controls preload="metadata">
+              <source src="WhatsApp Video 2025-10-02 at 08.26.34.mp4" type="video/mp4" />
+              <p>O seu navegador não suporta o elemento de vídeo.</p>
+            </video>
+          </div>
+          <p class="video-caption">Vídeo demonstrativo 1</p>
+        </div>
+
+        <div>
+          <div class="video-wrapper">
+            <video controls preload="metadata">
+              <source src="WhatsApp Video 2025-10-04 at 14.23.17.mp4" type="video/mp4" />
+              <p>O seu navegador não suporta o elemento de vídeo.</p>
+            </video>
+          </div>
+          <p class="video-caption">Vídeo de exemplo Big Buck Bunny</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- JavaScript para alternar o tema -->
+  <script>
+    const body = document.body;
+    const button = document.querySelector('.toggle-dark-mode');
+    const buttonText = button.querySelector('span');
+    const buttonIcon = button.querySelector('i');
+
+    if (localStorage.getItem('darkMode') === 'true') {
+      body.classList.add('dark-mode');
+      buttonIcon.className = 'fas fa-sun';
+      buttonText.textContent = 'Tema Claro';
+    }
+
+    function toggleDarkMode() {
+      body.classList.toggle('dark-mode');
+      const isDark = body.classList.contains('dark-mode');
+      localStorage.setItem('darkMode', isDark);
+      
+      if (isDark) {
+        buttonIcon.className = 'fas fa-sun';
+        buttonText.textContent = 'Tema Claro';
+      } else {
+        buttonIcon.className = 'fas fa-moon';
+        buttonText.textContent = 'Tema Escuro';
+      }
+    }
+
+    // Animação sequencial dos blocos
+    const blocks = document.querySelectorAll('.media-block');
+    blocks.forEach((block, index) => {
+      block.style.animationDelay = `${index * 0.1}s`;
+    });
+  </script>
+</body>
+</html>
